@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="styles/style_registro.css">
+	<title>Actualizacion de datos del usuario</title>
+</head>
+<body>
+	<form action="actualizacion_info.php" method="post">
+		<h2>Actualizacion de informacion</h2>
+		<label for="user_name">User Name:</label>
+		<input type="text" name="user_name" required>
+		<label for="nombres">Nombres:</label>
+		<input type="text" name="nombres" required>
+		<label for="apellidos">Apellidos:</label>
+		<input type="text" name="apellidos" required>
+		<label for="email">Email:</label>
+		<input type="email" name="email" required>
+		<label for="contraseña">Contraseña:</label>
+		<input type="password" name="contraseña" required>
+		<button type="submit">Actualizar Información</button>
+	</form>
+</body>
+</html>
