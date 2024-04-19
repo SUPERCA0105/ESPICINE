@@ -43,15 +43,38 @@ while ($row = $resultado->fetch(PDO::FETCH_ASSOC)) {
             <table>
                 <tr>
                     <td>
-                        Usuario:
-                        <input id="Usuario" required>
+                        <?php
+                            session_start();
+                            $user_id = $_SESSION['id_usuario'];
+                            include_once 'config/conex.php';
+                            $query = "SELECT user_name FROM registro WHERE id_usuario = :id_usuario";
+                            $stmt = $dbh->prepare($query);
+                            $stmt->bindParam(':id_usuario', $user_id, PDO::PARAM_INT);
+                            $stmt->execute();
+                            if ($stmt->rowCount() > 0) {
+                              $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                              $username = $row["user_name"];
+                                      echo "Nombre de usuario: " . $username . "<br>";
+                            } else {
+                                      echo "No se encontraron datos del usuario.";
+                            }
+                          ?>
                     </td>    
                     <td>
-                        Película:
-                        <select id="tituloPelicula" required>
-                            <?php echo $options; ?>
-                        </select>
-                                              
+                        <?php
+                          include_once 'config/conex.php';
+                          $idPelicula = $_GET['id'];
+                          $sql = "SELECT titulo FROM peliculas WHERE id_peliculas = ?";
+                          $stmt = $dbh->prepare($sql);
+                          $stmt->execute([$idPelicula]);
+                          $pelicula = $stmt->fetch(PDO::FETCH_ASSOC);
+                          if ($pelicula) {
+                            echo '<div>';
+                            echo '<h1>' . $pelicula['titulo'] . '</h1>';
+                          } else {
+                            echo 'Información no disponible.';
+                          }
+                        ?>                              
                     </td>
                 </tr>
                 <tr>
