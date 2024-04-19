@@ -81,9 +81,9 @@
                   echo "Nombre real: " . $realname . "<br>";
                   echo "Correo electrónico: " . $email . "<br>";
                 } else {
-                  echo "No se encontraron datos del administrador.";
+                  echo "No se encontraron datos del usuario.";
                 }
-              ?>
+            ?>
                 <a href="cierre.php" id="logout">Cerrar Sesión</a>
             </div>
           </div>
